@@ -1,0 +1,36 @@
+public class SumaX {
+        public static void main(String[] args) {
+            if (args.length < 2) {
+                System.out.println("Debe proporcionar al menos dos argumentos: x y los elementos del arreglo A[].");
+                return;
+            }
+
+            int x = Integer.parseInt(args[0]);
+            int[] A = new int[args.length - 1];
+            for (int i = 1; i < args.length; i++) {
+                A[i - 1] = Integer.parseInt(args[i]);
+            }
+
+            System.out.println("Número x: " + x);
+            System.out.println("Arreglo A[]: " + java.util.Arrays.toString(A));
+
+            if (Suma(A, x)) {
+                System.out.println("Sí existen dos elementos en A[] cuya suma es " + x + ".");
+            } else {
+                System.out.println("No existen dos elementos en A[] cuya suma sea " + x + ".");
+            }
+        }
+
+        public static boolean Suma(int[] A, int x) {
+            java.util.HashSet<Integer> set = new java.util.HashSet<>();
+
+            for (int num : A) {
+                if (set.contains(x - num)) {
+                    return true;
+                }
+                set.add(num);
+            }
+
+            return false;
+        }
+    }
